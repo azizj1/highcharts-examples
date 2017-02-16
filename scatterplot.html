@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	
+<html> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Debrief Charts</title>
+    <meta name="Author" content="Aziz Javed" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+</head>
+<body>
+<div id="container" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+$(function () {
+		var xAxisLabels = ['<strong>Bad Scenario1</strong>', '<strong>Bad Scenario2</strong>', 'Scenario1', 'Scenario2', 'Scenario3', 'Scenario4', 'Scenario5'];
+    var yAxisLabels = ['Found it<br/> quickly', 'Reasonable <br/>amount <br/> of time', 'Unable to']
+    var chart = Highcharts.chart('container', {
+        chart: {
+            type: 'scatter',
+            zoomType: 'xy'
+        },
+        title: {
+            text: 'Observation on Screen X'
+        },
+        subtitle: {
+            text: "Source: Team Y"
+        },
+        credits: {
+        	enabled: false
+        },
+        yAxis: {
+            title: {
+                text: 'Time it took to find'
+            },
+            labels: {
+            	formatter: function() {
+              	if (this.value <= 0 || this.value > 30)
+                	return "";
+                return yAxisLabels[this.value / 10 - 1];
+              }
+            }
+        },exporting: { enabled: false },
+        xAxis: {
+            labels: {
+                formatter: function() {
+                	if (this.value < 10 || this.value > 70) {
+                  	return "";
+                  }
+                  	return xAxisLabels[this.value / 10 - 1];
+                  
+                }
+            },
+            title: {
+            	text: 'Scenarios'
+            },
+            plotBands: [{
+            	from: 5,
+              to: 25,
+              color: '#FFEEEE',
+              label: {
+                text: '<em>Concerning</em>',
+                style: {
+                  color: '#999999'
+                }
+              },
+              zIndex: 0
+            },
+            {
+            	from: 25,
+              to: 75,
+              color: '#EEFFEE',
+              label: {
+                text: '<em>Great</em>',
+                style: {
+                  color: '#999999'
+                }
+              }
+            }]
+        },
+        plotOptions: {
+            scatter: {
+                marker: {
+                    radius: 5,
+                    states: {
+                        hover: {
+                            enabled: true,
+                            lineColor: 'rgb(100,100,100)'
+                        }
+                    }
+                },
+                states: {
+                    hover: {
+                        marker: {
+                            enabled: false
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x} cm, {point.y} kg'
+                }
+            }
+        },
+        series: [{
+            name: 'Persona A',
+            color: 'rgba(223, 83, 83, .5)',
+            data: [[30, 31], [38, 5],[50, 15], [10, 31], [20, 20], [59, 10], [68, 5],
+                   [30, 10], [39, 5],[50, 10], [11, 31], [20, 5], [60, 10], [69, 5]]
+
+        }, {
+            name: 'Persona B',
+            color: 'rgba(119, 152, 191, .5)',
+            data: [[30, 5], [40, 5],[51, 10], [10, 20], [20, 3], [60, 5], [70, 5],
+                   [29, 10], [41, 5],[52, 10], [12, 31], [21, 5], [61,10], [71, 5],
+                             [42, 5],[50, 8], [13, 31], [22, 5],           [72, 5]]
+        },{
+            name: 'Persona C',
+            color: 'rgba(60, 120, 246, .5)',
+            data: [[29, 5],          [50, 31], [11, 32], [20, 15],       [70, 3],
+                            [40, 31],          [12, 32], [20, 25],       [70, 10]]
+        },{
+          data: [[11.5, 31]],
+          linkedTo: 'other', // link it to other series to avoid legend entry
+          marker: {
+              radius: 25,
+              lineColor: '#FFDDDD',
+              fillColor: 'rgba(255,30,30, 0.2)',
+              lineWidth: 1,
+              symbol: 'circle'
+        	}
+        }, {
+          data: [[20, 20]],
+          linkedTo: 'other', // link it to other series to avoid legend entry
+          marker: {
+              radius: 45,
+              lineColor: '#FFDDDD',
+              fillColor: 'rgba(255,30,30, 0.2)',
+              lineWidth: 1,
+              symbol: 'circle'
+        	}
+        }
+        ]
+    }); 
+});
+</script>
+</body>
+</html>

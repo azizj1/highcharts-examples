@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if IE 8]>			<html class="ie ie8"> <![endif]-->
+<!--[if IE 9]>			<html class="ie ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->	
+<html> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    <title>Debrief Charts</title>
+    <meta name="Author" content="Aziz Javed" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+</head>
+<body>
+  <div style="margin: 0 auto;">
+    <div id="container1" style="display: inline-block"></div>
+    <div id="container2" style="display: inline-block"></div>
+  </div>
+<div style="margin: 0 0 0 -200px">
+  <div id="container3" style="margin: 0 -120px"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+var text = ['Quickly find information', 'This design over current design', 'Debrief Q3', 'Debrief Q4'];
+var yAxisLabels = ['Strongly disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'];
+$(function () {
+
+    Highcharts.chart('container2', {
+
+        chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Debrief'
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+
+        xAxis: [{
+            tickInterval: 90,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                    return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 5,
+        },
+        {
+            tickInterval: 45,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                		if ((this.value / 45) % 2 == 1)
+                    	return text[(this.value / 45 - 1) / 2];
+                    else
+                    	return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 0,
+        }],
+        yAxis: {
+            min: 0,
+            tickInterval: 1,
+            max: 5,
+            labels: {
+            	style: { "color": "rgb(114,228,191)" },
+              formatter: function() {
+              	return this.value === 0? '' : yAxisLabels[this.value-1];
+              }
+            },
+            gridZIndex: 10,
+            gridLineWidth: 0.75,
+	          gridLineDashStyle: 'longdash'
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 90
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+        series: [{
+            type: 'column',
+            name: 'Persona B',
+            data: [5, 4.5, 5, 4],
+            pointPlacement: 'between',
+            borderWidth: 1,
+            color: 'rgb(111,160,232)'
+        }]
+    });
+});
+$(function () {
+
+    Highcharts.chart('container1', {
+
+        chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Debrief'
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+
+        xAxis: [{
+            tickInterval: 90,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                    return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 5,
+        },
+        {
+            tickInterval: 45,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                		if ((this.value / 45) % 2 == 1)
+                    	return text[(this.value / 45 - 1) / 2];
+                    else
+                    	return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 0,
+        }],
+        yAxis: {
+            min: 0,
+            tickInterval: 1,
+            max: 5,
+            labels: {
+            	style: { "color": "rgb(114,228,191)" },
+              formatter: function() {
+              	return this.value === 0? '' : yAxisLabels[this.value-1];
+              }
+            },
+            gridZIndex: 10,
+            gridLineWidth: 0.75,
+	          gridLineDashStyle: 'longdash'
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 90
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+        series: [{
+            type: 'column',
+            name: 'Persona A',
+            data: [3, 1.75, 2.5, 3.4],
+            pointPlacement: 'between',
+            borderWidth: 1,
+            color: 'rgb(67,124,210)'
+        }]
+    });
+});
+$(function () {
+    Highcharts.chart('container3', {
+
+        chart: {
+            polar: true
+        },
+
+        title: {
+            text: 'Debrief'
+        },
+
+        pane: {
+            startAngle: 0,
+            endAngle: 360
+        },
+
+        xAxis: [{
+            tickInterval: 90,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                    return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 5,
+        },
+        {
+            tickInterval: 45,
+            min: 0,
+            max: 360,
+            labels: {
+                formatter: function () {
+                		if ((this.value / 45) % 2 == 1)
+                    	return text[(this.value / 45 - 1) / 2];
+                    else
+                    	return '';
+                },
+                step: 1,
+                zIndex: 1000
+            },
+            tickmarkPlacement: 3,
+            gridLineWidth: 0,
+        }
+        ],
+
+        yAxis: {
+            min: 0,
+            tickInterval: 1,
+            max: 5,
+            labels: {
+            	style: { "color": "#f1c40f" },
+              formatter: function() {
+              	return this.value === 0? '' : yAxisLabels[this.value-1];
+              }
+            },
+            gridZIndex: 10,
+            gridLineWidth: 0.75,
+	gridLineDashStyle: 'longdash'
+        },
+
+        plotOptions: {
+            series: {
+                pointStart: 0,
+                pointInterval: 90
+            },
+            column: {
+                pointPadding: 0,
+                groupPadding: 0
+            }
+        },
+        series: [{
+            type: 'column',
+            name: 'Persona C',
+            data: [4, 3, 3, 3.5],
+            pointPlacement: 'between',
+            borderWidth: 1,
+            color: '#e74c3c'
+        }]
+    });
+});
+</script>
+</body>
+</html>
